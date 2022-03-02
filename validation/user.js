@@ -12,22 +12,23 @@ const models = require("../models");
  * Optional: -
  */
 const createRules = [
-	body("username")
-		.exists()
-		.isLength({ min: 3 })
-		.custom(async (value) => {
-			const user = await new models.User({ username: value }).fetch({
-				require: false,
-			});
-			if (user) {
-				return Promise.reject("Username already exists.");
-			}
+  body("email")
+    .exists()
+    .isLength({ min: 3 })
+    .custom(async (value) => {
+      const user = await new models.User({ email: value }).fetch({
+        require: false,
+      });
+      if (user) {
+        return Promise.reject("Email already exists.");
+      }
 
-			return Promise.resolve();
-		}),
-	body("password").exists().isLength({ min: 4 }),
-	body("first_name").exists().isLength({ min: 2 }),
-	body("last_name").exists().isLength({ min: 2 }),
+      return Promise.resolve();
+    }),
+  body("password").exists().isLength({ min: 6 }),
+  body("first_name").exists().isLength({ min: 3 }),
+  body("last_name").exists().isLength({ min: 3 }),
+  body("email").exists().isEmail(),
 ];
 
 /**
@@ -37,12 +38,12 @@ const createRules = [
  * Optional: password, first_name, last_name
  */
 const updateRules = [
-	body("password").optional().isLength({ min: 4 }),
-	body("first_name").optional().isLength({ min: 2 }),
-	body("last_name").optional().isLength({ min: 2 }),
+  body("password").optional().isLength({ min: 6 }),
+  body("first_name").optional().isLength({ min: 3 }),
+  body("last_name").optional().isLength({ min: 3 }),
 ];
 
 module.exports = {
-	createRules,
-	updateRules,
+  createRules,
+  updateRules,
 };
