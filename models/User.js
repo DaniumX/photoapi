@@ -1,7 +1,7 @@
 /**
  * User model
  */
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 
 module.exports = (bookshelf) => {
   return bookshelf.model(
