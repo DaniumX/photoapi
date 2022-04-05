@@ -9,7 +9,10 @@ module.exports = (bookshelf) => {
       return this.belongsTo("User"); // books.author_id = 3   ->   authors.id = 3 (single author)
     },
     // albums() {
-    // 	return this.belongsToMany('albums');
-    // }
+    //   return this.belongsToMany("Album");
+    // },
+    album() {
+      return this.belongsToMany("PhotoAlbum", "photo"); // books.author_id = 3   ->   authors.id = 3 (single author)
+    },
   });
 };

@@ -2,7 +2,7 @@
  * Auth Controller
  */
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const debug = require("debug")("photoAPI:auth_controller");
 const jwt = require("jsonwebtoken");
 const { matchedData, validationResult } = require("express-validator");
